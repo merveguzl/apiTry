@@ -1,0 +1,155 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ModelsStoreContainer" CdmEntityContainer="MadalyonContext">
+    <EntitySetMapping Name="Currency_Table">
+      <EntityTypeMapping TypeName="Models.Currency_Table">
+        <MappingFragment StoreEntitySet="Currency_Table">
+          <ScalarProperty Name="currency_id" ColumnName="currency_id" />
+          <ScalarProperty Name="currency_nick" ColumnName="currency_nick" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Dictionary_Table">
+      <EntityTypeMapping TypeName="Models.Dictionary_Table">
+        <MappingFragment StoreEntitySet="Dictionary_Table">
+          <ScalarProperty Name="dictionary_id" ColumnName="dictionary_id" />
+          <ScalarProperty Name="dictionary_tr" ColumnName="dictionary_tr" />
+          <ScalarProperty Name="dictionary_en" ColumnName="dictionary_en" />
+          <ScalarProperty Name="dictionary_fr" ColumnName="dictionary_fr" />
+          <ScalarProperty Name="dictionary_de" ColumnName="dictionary_de" />
+          <ScalarProperty Name="dictionary_es" ColumnName="dictionary_es" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="Models.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Translate_Table">
+      <EntityTypeMapping TypeName="Models.Translate_Table">
+        <MappingFragment StoreEntitySet="Translate_Table">
+          <ScalarProperty Name="lang_id" ColumnName="lang_id" />
+          <ScalarProperty Name="lang_name" ColumnName="lang_name" />
+          <ScalarProperty Name="lang_nick" ColumnName="lang_nick" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="User_Table">
+      <EntityTypeMapping TypeName="Models.User_Table">
+        <MappingFragment StoreEntitySet="User_Table">
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="user_nickname" ColumnName="user_nickname" />
+          <ScalarProperty Name="user_name" ColumnName="user_name" />
+          <ScalarProperty Name="user_surname" ColumnName="user_surname" />
+          <ScalarProperty Name="user_email" ColumnName="user_email" />
+          <ScalarProperty Name="user_photo" ColumnName="user_photo" />
+          <ScalarProperty Name="user_password" ColumnName="user_password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="User_Info_Table">
+      <EntityTypeMapping TypeName="Models.User_Info_Table">
+        <MappingFragment StoreEntitySet="User_Info_Table">
+          <ScalarProperty Name="user_info_city" ColumnName="user_info_city" />
+          <ScalarProperty Name="user_info_reliability" ColumnName="user_info_reliability" />
+          <ScalarProperty Name="user_info_book" ColumnName="user_info_book" />
+          <ScalarProperty Name="user_info_date" ColumnName="user_info_date" />
+          <ScalarProperty Name="user_info_travel" ColumnName="user_info_travel" />
+          <ScalarProperty Name="user_info_hobby" ColumnName="user_info_hobby" />
+          <ScalarProperty Name="user_info_contact_email" ColumnName="user_info_contact_email" />
+          <ScalarProperty Name="user_info_contact_no" ColumnName="user_info_contact_no" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="user_info_id" ColumnName="user_info_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Top_Book">
+      <EntityTypeMapping TypeName="Models.Top_Book">
+        <MappingFragment StoreEntitySet="Top_Book">
+          <ScalarProperty Name="write_name" ColumnName="write_name" />
+          <ScalarProperty Name="book_name" ColumnName="book_name" />
+          <ScalarProperty Name="book_id" ColumnName="book_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Experience_Table">
+      <EntityTypeMapping TypeName="Models.Experience_Table">
+        <MappingFragment StoreEntitySet="Experience_Table">
+          <ScalarProperty Name="experience_location" ColumnName="experience_location" />
+          <ScalarProperty Name="experience_photo" ColumnName="experience_photo" />
+          <ScalarProperty Name="experience_text" ColumnName="experience_text" />
+          <ScalarProperty Name="experience_name" ColumnName="experience_name" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="experience_id" ColumnName="experience_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Review_Table">
+      <EntityTypeMapping TypeName="Models.Review_Table">
+        <MappingFragment StoreEntitySet="Review_Table">
+          <ScalarProperty Name="review_photo" ColumnName="review_photo" />
+          <ScalarProperty Name="review_text" ColumnName="review_text" />
+          <ScalarProperty Name="review_name" ColumnName="review_name" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="review_id" ColumnName="review_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Book_Table">
+      <EntityTypeMapping TypeName="Models.Book_Table">
+        <MappingFragment StoreEntitySet="Book_Table">
+          <ScalarProperty Name="writer_name" ColumnName="writer_name" />
+          <ScalarProperty Name="book_name" ColumnName="book_name" />
+          <ScalarProperty Name="book_choise" ColumnName="book_choise" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="book_id" ColumnName="book_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Travel_Questions_Table">
+      <EntityTypeMapping TypeName="Models.Travel_Questions_Table">
+        <MappingFragment StoreEntitySet="Travel_Questions_Table">
+          <ScalarProperty Name="travel_answers_date" ColumnName="travel_answers_date" />
+          <ScalarProperty Name="travel_answers_message" ColumnName="travel_answers_message" />
+          <ScalarProperty Name="travel_questions_date" ColumnName="travel_questions_date" />
+          <ScalarProperty Name="travel_questions_message" ColumnName="travel_questions_message" />
+          <ScalarProperty Name="travel_questions_from_id" ColumnName="travel_questions_from_id" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="travel_questions_id" ColumnName="travel_questions_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Read_Questions_Table">
+      <EntityTypeMapping TypeName="Models.Read_Questions_Table">
+        <MappingFragment StoreEntitySet="Read_Questions_Table">
+          <ScalarProperty Name="read_answers_date" ColumnName="read_answers_date" />
+          <ScalarProperty Name="read_answers_message" ColumnName="read_answers_message" />
+          <ScalarProperty Name="read_questions_date" ColumnName="read_questions_date" />
+          <ScalarProperty Name="read_questions_message" ColumnName="read_questions_message" />
+          <ScalarProperty Name="read_questions_from_id" ColumnName="read_questions_from_id" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="read_questions_id" ColumnName="read_questions_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Travel_Map_Table">
+      <EntityTypeMapping TypeName="Models.Travel_Map_Table">
+        <MappingFragment StoreEntitySet="Travel_Map_Table">
+          <ScalarProperty Name="travel_date" ColumnName="travel_date" />
+          <ScalarProperty Name="travel_country" ColumnName="travel_country" />
+          <ScalarProperty Name="travel_city" ColumnName="travel_city" />
+          <ScalarProperty Name="travel_choise" ColumnName="travel_choise" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="Travel_id" ColumnName="Travel_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

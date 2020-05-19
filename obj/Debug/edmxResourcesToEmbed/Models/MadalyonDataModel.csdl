@@ -1,0 +1,281 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Models" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Currency_Table">
+    <Key>
+      <PropertyRef Name="currency_id" />
+    </Key>
+    <Property Name="currency_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="currency_nick" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Dictionary_Table">
+    <Key>
+      <PropertyRef Name="dictionary_id" />
+    </Key>
+    <Property Name="dictionary_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="dictionary_tr" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="dictionary_en" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="dictionary_fr" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="dictionary_de" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="dictionary_es" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Translate_Table">
+    <Key>
+      <PropertyRef Name="lang_id" />
+    </Key>
+    <Property Name="lang_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="lang_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="lang_nick" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Travel_Map_Table">
+    <Key>
+      <PropertyRef Name="Travel_id" />
+    </Key>
+    <Property Name="Travel_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="user_id" Type="Int32" />
+    <Property Name="travel_choise" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="travel_city" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="travel_country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="travel_date" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="User_Table" Relationship="Self.FK_Travel_Map_Table_User_Table" FromRole="Travel_Map_Table" ToRole="User_Table" />
+  </EntityType>
+  <EntityType Name="User_Table">
+    <Key>
+      <PropertyRef Name="user_id" />
+    </Key>
+    <Property Name="user_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="user_nickname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="user_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="user_surname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="user_email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="user_photo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="user_password" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Travel_Map_Table" Relationship="Self.FK_Travel_Map_Table_User_Table" FromRole="User_Table" ToRole="Travel_Map_Table" />
+    <NavigationProperty Name="User_Info_Table" Relationship="Models.FK__User_Info__user___3F115E1A" FromRole="User_Table" ToRole="User_Info_Table" />
+    <NavigationProperty Name="Experience_Table" Relationship="Models.FK_Experience_Table_User_Table" FromRole="User_Table" ToRole="Experience_Table" />
+    <NavigationProperty Name="Review_Table" Relationship="Models.FK_Review_Table_User_Table" FromRole="User_Table" ToRole="Review_Table" />
+    <NavigationProperty Name="Book_Table" Relationship="Models.FK_Book_Table_User_Table" FromRole="User_Table" ToRole="Book_Table" />
+    <NavigationProperty Name="Travel_Questions_Table" Relationship="Models.FK_Travel_Questions_Table_User_Table" FromRole="User_Table" ToRole="Travel_Questions_Table" />
+    <NavigationProperty Name="Read_Questions_Table" Relationship="Models.FK_Read_Questions_Table_User_Table" FromRole="User_Table" ToRole="Read_Questions_Table" />
+  </EntityType>
+  <Association Name="FK_Travel_Map_Table_User_Table">
+    <End Role="User_Table" Type="Self.User_Table" Multiplicity="0..1" />
+    <End Role="Travel_Map_Table" Type="Self.Travel_Map_Table" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User_Table">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="Travel_Map_Table">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="MadalyonContext" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Currency_Table" EntityType="Self.Currency_Table" />
+    <EntitySet Name="Dictionary_Table" EntityType="Self.Dictionary_Table" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="Translate_Table" EntityType="Self.Translate_Table" />
+    <EntitySet Name="Travel_Map_Table" EntityType="Self.Travel_Map_Table" />
+    <EntitySet Name="User_Table" EntityType="Self.User_Table" />
+    <AssociationSet Name="FK_Travel_Map_Table_User_Table" Association="Self.FK_Travel_Map_Table_User_Table">
+      <End Role="User_Table" EntitySet="User_Table" />
+      <End Role="Travel_Map_Table" EntitySet="Travel_Map_Table" />
+    </AssociationSet>
+    <EntitySet Name="User_Info_Table" EntityType="Models.User_Info_Table" />
+    <AssociationSet Name="FK__User_Info__user___3F115E1A" Association="Models.FK__User_Info__user___3F115E1A">
+      <End Role="User_Table" EntitySet="User_Table" />
+      <End Role="User_Info_Table" EntitySet="User_Info_Table" />
+    </AssociationSet>
+    <EntitySet Name="Top_Book" EntityType="Models.Top_Book" />
+    <EntitySet Name="Experience_Table" EntityType="Models.Experience_Table" />
+    <EntitySet Name="Review_Table" EntityType="Models.Review_Table" />
+    <AssociationSet Name="FK_Experience_Table_User_Table" Association="Models.FK_Experience_Table_User_Table">
+      <End Role="User_Table" EntitySet="User_Table" />
+      <End Role="Experience_Table" EntitySet="Experience_Table" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Review_Table_User_Table" Association="Models.FK_Review_Table_User_Table">
+      <End Role="User_Table" EntitySet="User_Table" />
+      <End Role="Review_Table" EntitySet="Review_Table" />
+    </AssociationSet>
+    <EntitySet Name="Book_Table" EntityType="Models.Book_Table" />
+    <AssociationSet Name="FK_Book_Table_User_Table" Association="Models.FK_Book_Table_User_Table">
+      <End Role="User_Table" EntitySet="User_Table" />
+      <End Role="Book_Table" EntitySet="Book_Table" />
+    </AssociationSet>
+    <EntitySet Name="Travel_Questions_Table" EntityType="Models.Travel_Questions_Table" />
+    <AssociationSet Name="FK_Travel_Questions_Table_User_Table" Association="Models.FK_Travel_Questions_Table_User_Table">
+      <End Role="User_Table" EntitySet="User_Table" />
+      <End Role="Travel_Questions_Table" EntitySet="Travel_Questions_Table" />
+    </AssociationSet>
+    <EntitySet Name="Read_Questions_Table" EntityType="Models.Read_Questions_Table" />
+    <AssociationSet Name="FK_Read_Questions_Table_User_Table" Association="Models.FK_Read_Questions_Table_User_Table">
+      <End Role="User_Table" EntitySet="User_Table" />
+      <End Role="Read_Questions_Table" EntitySet="Read_Questions_Table" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="User_Info_Table">
+    <Key>
+      <PropertyRef Name="user_info_id" />
+    </Key>
+    <Property Name="user_info_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="user_id" Type="Int32" Nullable="false" />
+    <Property Name="user_info_contact_no" Type="Int32" />
+    <Property Name="user_info_contact_email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="user_info_hobby" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="user_info_travel" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="user_info_date" Type="DateTime" Precision="3" />
+    <Property Name="user_info_book" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="user_info_reliability" Type="Int32" />
+    <Property Name="user_info_city" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="User_Table" Relationship="Models.FK__User_Info__user___3F115E1A" FromRole="User_Info_Table" ToRole="User_Table" />
+  </EntityType>
+  <Association Name="FK__User_Info__user___3F115E1A">
+    <End Type="Models.User_Table" Role="User_Table" Multiplicity="1" />
+    <End Type="Models.User_Info_Table" Role="User_Info_Table" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User_Table">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="User_Info_Table">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Top_Book">
+    <Key>
+      <PropertyRef Name="book_id" />
+    </Key>
+    <Property Name="book_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="book_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="write_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Experience_Table">
+    <Key>
+      <PropertyRef Name="experience_id" />
+    </Key>
+    <Property Name="experience_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="user_id" Type="Int32" Nullable="false" />
+    <Property Name="experience_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="experience_text" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="experience_photo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="experience_location" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="User_Table" Relationship="Models.FK_Experience_Table_User_Table" FromRole="Experience_Table" ToRole="User_Table" />
+  </EntityType>
+  <EntityType Name="Review_Table">
+    <Key>
+      <PropertyRef Name="review_id" />
+    </Key>
+    <Property Name="review_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="user_id" Type="Int32" Nullable="false" />
+    <Property Name="review_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="review_text" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="review_photo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="User_Table" Relationship="Models.FK_Review_Table_User_Table" FromRole="Review_Table" ToRole="User_Table" />
+  </EntityType>
+  <Association Name="FK_Experience_Table_User_Table">
+    <End Type="Models.User_Table" Role="User_Table" Multiplicity="1" />
+    <End Type="Models.Experience_Table" Role="Experience_Table" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User_Table">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="Experience_Table">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Review_Table_User_Table">
+    <End Type="Models.User_Table" Role="User_Table" Multiplicity="1" />
+    <End Type="Models.Review_Table" Role="Review_Table" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User_Table">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="Review_Table">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Book_Table">
+    <Key>
+      <PropertyRef Name="book_id" />
+    </Key>
+    <Property Name="book_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="user_id" Type="Int32" />
+    <Property Name="book_choise" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="book_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="writer_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="User_Table" Relationship="Models.FK_Book_Table_User_Table" FromRole="Book_Table" ToRole="User_Table" />
+  </EntityType>
+  <Association Name="FK_Book_Table_User_Table">
+    <End Type="Models.User_Table" Role="User_Table" Multiplicity="0..1" />
+    <End Type="Models.Book_Table" Role="Book_Table" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User_Table">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="Book_Table">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Travel_Questions_Table">
+    <Key>
+      <PropertyRef Name="travel_questions_id" />
+    </Key>
+    <Property Name="travel_questions_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="user_id" Type="Int32" />
+    <Property Name="travel_questions_from_id" Type="Int32" />
+    <Property Name="travel_questions_message" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="travel_questions_date" Type="DateTime" Precision="3" />
+    <Property Name="travel_answers_message" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="travel_answers_date" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="User_Table" Relationship="Models.FK_Travel_Questions_Table_User_Table" FromRole="Travel_Questions_Table" ToRole="User_Table" />
+  </EntityType>
+  <Association Name="FK_Travel_Questions_Table_User_Table">
+    <End Type="Models.User_Table" Role="User_Table" Multiplicity="0..1" />
+    <End Type="Models.Travel_Questions_Table" Role="Travel_Questions_Table" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User_Table">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="Travel_Questions_Table">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Read_Questions_Table">
+    <Key>
+      <PropertyRef Name="read_questions_id" />
+    </Key>
+    <Property Name="read_questions_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="user_id" Type="Int32" />
+    <Property Name="read_questions_from_id" Type="Int32" />
+    <Property Name="read_questions_message" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="read_questions_date" Type="DateTime" Precision="3" />
+    <Property Name="read_answers_message" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="read_answers_date" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="User_Table" Relationship="Models.FK_Read_Questions_Table_User_Table" FromRole="Read_Questions_Table" ToRole="User_Table" />
+  </EntityType>
+  <Association Name="FK_Read_Questions_Table_User_Table">
+    <End Type="Models.User_Table" Role="User_Table" Multiplicity="0..1" />
+    <End Type="Models.Read_Questions_Table" Role="Read_Questions_Table" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User_Table">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="Read_Questions_Table">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
